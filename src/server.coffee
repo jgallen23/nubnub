@@ -159,7 +159,10 @@ exports.Subscription = Subscription
 #
 # Returns a Subscription instance.
 exports.build = (data) ->
-  new exports.Subscription data
+  builtData = { hub: {} }
+  for key, value of data
+    builtData.hub[key.split(".")[1]] = value
+  new exports.Subscription builtData
 
 # Public: Handles a PuSH subscription request.
 #
